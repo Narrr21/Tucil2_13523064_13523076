@@ -8,7 +8,7 @@ cli::cli()
     cout << "Please enter the output path: " << endl;
     cin >> outputPath;
     cout << "Please enter the EMP: " << endl;
-    cin >> EMP;
+    cin >> method;
     cout << "Please enter the range: " << endl;
     cin >> range;
     cout << "Please enter the minBlok: " << endl;
@@ -28,10 +28,11 @@ void cli::setOutputPath(string path)
 {
     outputPath = path;
 }
-void cli::setEMP(int emp)
+void cli::setMethod(int method)
 {
-    EMP = emp;
+    this->method = method;
 }
+
 void cli::setRange(int range)
 {
     this->range = range;
@@ -48,9 +49,9 @@ string cli::getOutputPath()
 {
     return outputPath;
 }
-int cli::getEMP()
+int cli::getmethod()
 {
-    return EMP;
+    return method;
 }
 int cli::getRange()
 {
@@ -64,12 +65,12 @@ void cli::debugInfo()
 {
     cout << "Image Path  : " << imagePath << endl;
     cout << "Output Path : " << outputPath << endl;
-    cout << "EMP         : " << EMP << endl;
+    cout << "Method      : " << method << endl;
     cout << "Range       : " << range << endl;
     cout << "Min Blok    : " << minBlok << endl;
 }
 
-bool cli::checkEMP()
+bool cli::checkMethod()
 {
     // later
     return true;

@@ -11,7 +11,7 @@ class cli
 private:
     string imagePath;
     string outputPath;
-    int EMP;
+    int method;
     int range;
     int minBlok;
 public:
@@ -19,16 +19,16 @@ public:
     ~cli();
     void setImagePath(string path);
     void setOutputPath(string path);
-    void setEMP(int emp);
+    void setMethod(int method);
     void setRange(int range);
     void setMinBlok(int minBlok);
     string getImagePath();
     string getOutputPath();
-    int getEMP();
+    int getmethod();
     int getRange();
     int getMinBlok();
     void debugInfo();
-    bool checkEMP();
+    bool checkMethod();
     bool checkRange();
     bool checkMinBlok();
 };
