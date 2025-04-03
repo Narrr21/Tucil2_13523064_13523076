@@ -4,6 +4,11 @@
     "*.ndjson": "jsonl",
     "*.dbclient-js": "javascript",
     "*.ejs": "html",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "xstring": "cpp",
+    "initializer_list": "cpp",
+    "type_traits": "cpp",
+    "xutility": "cpp",
+    "vector": "cpp"
   }
 }

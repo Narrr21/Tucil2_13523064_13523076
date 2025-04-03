@@ -33,22 +33,22 @@ rgb& rgb::operator=(const rgb &other)
     return *this;
 }
 
-rgb& rgb::operator+(const rgb &other) const
+rgb rgb::operator+(const rgb &other) const
 {
     return rgb(red + other.red, green + other.green, blue + other.blue);
 }
 
-rgb& rgb::operator-(const rgb &other) const
+rgb rgb::operator-(const rgb &other) const
 {
     return rgb(red - other.red, green - other.green, blue - other.blue);
 }
 
-rgb& rgb::operator*(int n) const
+rgb rgb::operator*(int n) const
 {
     return rgb(red * n, green * n, blue * n);
 }
 
-rgb& rgb::operator/(int n) const
+rgb rgb::operator/(int n) const
 {
     if (n == 0)
     {
