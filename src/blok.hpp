@@ -30,6 +30,8 @@ public:
 
     bool checkSeragam(int method, int range) const;
     bool divide(int method, int range, int minBlok);
+    void normalizeRGB();
+    void reconstructMatrix(vector<vector<rgb>>& outputMatrix);
 
     void printBlok(int level) const;
     

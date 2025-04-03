@@ -63,33 +63,94 @@ bool Blok::divide(int method, int range, int minBlok) {
         return false;
     }
 
-    int halfX = sizeX / 2;
-    int halfY = sizeY / 2;
+    int halfX = sizeX / 2 + (sizeX % 2);
+    int halfY = sizeY / 2 + (sizeY % 2);
 
     vector<vector<rgb>> img1(halfY, vector<rgb>(halfX));
-    vector<vector<rgb>> img2(halfY, vector<rgb>(halfX));
-    vector<vector<rgb>> img3(halfY, vector<rgb>(halfX));
-    vector<vector<rgb>> img4(halfY, vector<rgb>(halfX));
+    vector<vector<rgb>> img2(halfY, vector<rgb>(sizeX - halfX));
+    vector<vector<rgb>> img3(sizeY - halfY, vector<rgb>(halfX));
+    vector<vector<rgb>> img4(sizeY - halfY, vector<rgb>(sizeX - halfX));
 
     for (int i = 0; i < halfY; i++) {
         for (int j = 0; j < halfX; j++) {
-            img1[i][j] = image[i][j];                 // Top-left
-            img2[i][j] = image[i][j + halfX];         // Top-right
-            img3[i][j] = image[i + halfY][j];         // Bottom-left
-            img4[i][j] = image[i + halfY][j + halfX]; // Bottom-right
+            img1[i][j] = image[i][j];
+            if (j + halfX < sizeX) {
+                img2[i][j] = image[i][j + halfX];
+            }
+        }
+    }
+
+    for (int i = 0; i < sizeY - halfY; i++) {
+        for (int j = 0; j < halfX; j++) {
+            img3[i][j] = image[i + halfY][j];
+            if (j + halfX < sizeX) {
+                img4[i][j] = image[i + halfY][j + halfX];
+            }
         }
     }
 
     children[0] = new Blok(coordX, coordY, img1, halfX, halfY, depth + 1);
-    children[1] = new Blok(coordX + halfX, coordY, img2, halfX, halfY, depth + 1);
-    children[2] = new Blok(coordX, coordY + halfY, img3, halfX, halfY, depth + 1);
-    children[3] = new Blok(coordX + halfX, coordY + halfY, img4, halfX, halfY, depth + 1);
+    children[1] = new Blok(coordX + halfX, coordY, img2, sizeX - halfX, halfY, depth + 1);
+    children[2] = new Blok(coordX, coordY + halfY, img3, halfX, sizeY - halfY, depth + 1);
+    children[3] = new Blok(coordX + halfX, coordY + halfY, img4, sizeX - halfX, sizeY - halfY, depth + 1);
 
     for (int i = 0; i < 4; i++) {
         children[i]->divide(method, range, minBlok);
     }
 
     return true;
+}
+
+
+void Blok::normalizeRGB() {
+    if (!isRoot) {
+        int totalRed = 0, totalGreen = 0, totalBlue = 0;
+        int pixelCount = sizeX * sizeY;
+
+
+        for (auto& row : image) {
+            for (auto& pixel : row) {
+                totalRed += pixel.getRed();
+                totalGreen += pixel.getGreen();
+                totalBlue += pixel.getBlue();
+            }
+        }
+
+        int avgRed = totalRed / pixelCount;
+        int avgGreen = totalGreen / pixelCount;
+        int avgBlue = totalBlue / pixelCount;
+
+        for (auto& row : image) {
+            for (auto& pixel : row) {
+                pixel.setRed(avgRed);
+                pixel.setGreen(avgGreen);
+                pixel.setBlue(avgBlue);
+            }
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (children[i] != nullptr) {
+            children[i]->normalizeRGB();
+        }
+    }
+}
+
+
+void Blok::reconstructMatrix(vector<vector<rgb>>& outputMatrix) {
+    if (!isRoot) {
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
+                outputMatrix[coordY + i][coordX + j] = image[i][j];
+            }
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (children[i] != nullptr) {
+            children[i]->reconstructMatrix(outputMatrix);
+        }
+    }
 }
 
 void Blok::printBlok(int level) const {
@@ -100,12 +161,25 @@ void Blok::printBlok(int level) const {
          << sizeX << "x" << sizeY << ", depth: " << depth 
          << (isRoot ? " [INTERNAL NODE]" : " [LEAF]") << endl;
 
+    if (!isRoot) {
+        cout << "RGB values at leaf node (" << coordX << ", " << coordY << "): ";
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
+                cout << "(" << image[i][j].getRed() << ", "
+                     << image[i][j].getGreen() << ", "
+                     << image[i][j].getBlue() << ") ";
+            }
+            cout << endl;
+        }
+    }
+
     for (int i = 0; i < 4; i++) {
         if (children[i] != nullptr) {
             children[i]->printBlok(level + 1);
         }
     }
 }
+
 
 
 int Blok::getCountBlok() {
