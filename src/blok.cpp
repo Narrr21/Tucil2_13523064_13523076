@@ -32,7 +32,14 @@ bool Blok::checkSeragam(int method, int range) const {
     if(method == 1) {
         // Placeholder for method 1
     } else if(method == 2) {
-        // Placeholder for method 2
+        MAD madvalue({});
+        vector<double> madval = madvalue.computeMADForMatrix(image);
+        double mad = madvalue.calculateMAD(madval);
+        cout << "MAD: " << mad << endl;
+        cout << "Range: " << range << endl;
+        if (mad < range) {
+            return true;
+        }
     } else if(method == 3) {
         // Placeholder for method 3
     } else {
@@ -41,20 +48,20 @@ bool Blok::checkSeragam(int method, int range) const {
     if (depth > maxDepth) {
         maxDepth = depth;
     }
-    return true;
+    return false;
 }
 
 bool Blok::divide(int method, int range, int minBlok) {
 
     if (checkSeragam(method, range)) {
+        isRoot = false;
         return false;
     }
 
     if (sizeX / 2 < minBlok || sizeY / 2 < minBlok) {
+        isRoot = false;
         return false;
     }
-
-    isRoot = true;
 
     int halfX = sizeX / 2;
     int halfY = sizeY / 2;
@@ -87,18 +94,15 @@ bool Blok::divide(int method, int range, int minBlok) {
 
 void Blok::printBlok(int level) const {
     for (int i = 0; i < level; i++) {
-        cout << "  "; // 2 spaces per level
+        cout << "  "; 
     }
-
-    // Print block information
     cout << "|-- Blok at (" << coordX << ", " << coordY << "), size: " 
          << sizeX << "x" << sizeY << ", depth: " << depth 
          << (isRoot ? " [INTERNAL NODE]" : " [LEAF]") << endl;
 
-    // Recursively print children
     for (int i = 0; i < 4; i++) {
         if (children[i] != nullptr) {
-            children[i]->printBlok(level + 1); // Increase indentation
+            children[i]->printBlok(level + 1);
         }
     }
 }

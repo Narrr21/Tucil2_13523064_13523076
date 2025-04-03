@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "rgb.hpp"
+#include "MAD.hpp"
 using namespace std;
 
 class Blok {

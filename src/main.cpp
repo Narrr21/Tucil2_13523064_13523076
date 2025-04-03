@@ -14,6 +14,11 @@ int main(int argc, char *argv[])
 
     if (blok->divide(handler->getmethod(), handler->getRange(), handler->getMinBlok())) {
         cout << "Block divided successfully." << endl;
+        cout << "Total blocks created: " << Blok::getCountBlok() << endl;
+        cout << "Max depth reached: " << Blok::getMaxDepth() << endl;
+        cout << "Block details:" << endl;
+        blok->printBlok(0);
+        cout << "Block details printed successfully." << endl;
     } else {
         cout << "Block is homogeneous or too small to divide." << endl;
     }
