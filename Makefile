@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXFLAGS = -Wall -Wextra -std=c++17 -I$(SRC_DIR)
 SRC_DIR = src
 BIN_DIR = bin
 TARGET = $(BIN_DIR)/main

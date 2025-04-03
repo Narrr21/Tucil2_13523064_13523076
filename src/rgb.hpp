@@ -18,10 +18,10 @@ public:
     rgb(int r, int g, int b);
     rgb(const rgb &other);
     rgb& operator=(const rgb &other);
-    rgb& operator+(const rgb &other) const;
-    rgb& operator-(const rgb &other) const;
-    rgb& operator*(int n) const;
-    rgb& operator/(int n) const;
+    rgb operator+(const rgb &other) const;
+    rgb operator-(const rgb &other) const;
+    rgb operator*(int n) const;
+    rgb operator/(int n) const;
     int getRed() const;
     int getGreen() const;
     int getBlue() const;
