@@ -35,13 +35,15 @@ bool Blok::checkSeragam(int method, int range) const {
         MAD madvalue({});
         vector<double> madval = madvalue.computeMADForMatrix(image);
         double mad = madvalue.calculateMAD(madval);
-        cout << "MAD: " << mad << endl;
-        cout << "Range: " << range << endl;
+        // cout << "MAD: " << mad << endl;
+        // cout << "Range: " << range << endl;
         if (mad < range) {
             return true;
         }
     } else if(method == 3) {
         // Placeholder for method 3
+    } else if(method == 4) {
+        
     } else {
         return false;
     }
