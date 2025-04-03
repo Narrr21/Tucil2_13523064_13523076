@@ -9,16 +9,13 @@ int main(int argc, char *argv[])
 
     vector<vector<rgb>> rgbMatrix = image.getRGBMatrix();
 
-    // for (size_t i = 0; i < rgbMatrix.size(); i++) {
-    //     for (size_t j = 0; j < rgbMatrix[i].size(); j++) {
-    //         cout << "(" << rgbMatrix[i][j].getRed() << ", "
-    //              << rgbMatrix[i][j].getGreen() << ", "
-    //              << rgbMatrix[i][j].getBlue() << ") ";
-    //     }
-    //     cout << endl; 
-    // }
+    Blok* blok = new Blok(0, 0, rgbMatrix, image.getWidth(), image.getHeight());
 
-
+    if (blok->divide(handler->getmethod(), handler->getRange(), handler->getMinBlok())) {
+        cout << "Block divided successfully." << endl;
+    } else {
+        cout << "Block is homogeneous or too small to divide." << endl;
+    }
     delete handler;
 
     return 0;
