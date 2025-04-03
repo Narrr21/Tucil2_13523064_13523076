@@ -25,6 +25,14 @@ vector<vector<rgb>> ImageProcess::getRGBMatrix() {
     return rgbMatrix;
 }
 
+int ImageProcess::getWidth() const {
+    return width;
+}
+
+int ImageProcess::getHeight() const {
+    return height;
+}
+
 ImageProcess::~ImageProcess() {
     if (imageData) {
         stbi_image_free(imageData);
