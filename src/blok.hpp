@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "rgb.hpp"
 using namespace std;
 
 class Blok {
@@ -14,19 +16,21 @@ private:
     const int sizeX;
     const int sizeY;
     bool isRoot;
-    int image; // Placeholder, perlu matrix RGB
+    vector<vector<rgb>> image;
     int depth;
 
     Blok* children[4] = {nullptr, nullptr, nullptr, nullptr};
 
 public:
-    Blok(int x, int y, int img, int sx, int sy, int d = 0);
+    Blok(int x, int y, vector<vector<rgb>> img, int sx, int sy, int d = 0);
     Blok(const Blok& other);
     ~Blok();
     Blok& operator+(const Blok& other);
 
-    bool checkSeragam(int method, int range, int minBlok) const;
-    bool divide();
+    bool checkSeragam(int method, int range) const;
+    bool divide(int method, int range, int minBlok);
+
+    void printBlok(int level) const;
     
     static int getCountBlok();
     static int getMaxDepth();

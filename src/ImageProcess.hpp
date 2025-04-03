@@ -16,7 +16,8 @@ class ImageProcess {
         ImageProcess(const string& filename);
         vector<vector<rgb>> getRGBMatrix();
         ~ImageProcess();
-
+        int getWidth() const;
+        int getHeight() const;
 
 };
 #endif
