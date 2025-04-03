@@ -14,7 +14,7 @@ private:
 public:
     MAD(const std::vector<double>& inputData);
     double computeMAD();
-    std::vector<double> computeMADForMatrix(const std::vector<std::vector<rgb>>& rgbMatrix);
+    vector<double> computeMADForMatrix(const vector<vector<rgb>>& rgbMatrix);
     double calculateMean() const;
     static double calculateMAD(vector<double> &data);
     void printData() const;
