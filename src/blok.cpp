@@ -24,7 +24,8 @@ Blok::~Blok() {
 bool Blok::checkSeragam(int method, int range) const {
     if(method == 1) {
         Variance varianceCalc({});
-        double var = varianceCalc.computeVariance();
+        vector<double> variance = varianceCalc.computeVarianceForMatrix(image);
+        double var = varianceCalc.calculateVariance(variance);
         if (var < range) {
             return true;
         }
