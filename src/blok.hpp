@@ -6,6 +6,7 @@
 #include <vector>
 #include "rgb.hpp"
 #include "MAD.hpp"
+#include "Entropy.hpp"
 using namespace std;
 
 class Blok {
