@@ -21,13 +21,6 @@ Blok::~Blok() {
     countBlok--;
 }
 
-Blok& Blok::operator+(const Blok& other) {
-    // Placeholder for merging
-    // This should combine the properties of two Blok objects
-    // and return a new Blok object.
-    return *this;
-}
-
 bool Blok::checkSeragam(int method, int range) const {
     if(method == 1) {
         // Placeholder for method 1

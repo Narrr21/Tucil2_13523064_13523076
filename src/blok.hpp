@@ -26,7 +26,6 @@ public:
     Blok(int x, int y, vector<vector<rgb>> img, int sx, int sy, int d = 0);
     Blok(const Blok& other);
     ~Blok();
-    Blok& operator+(const Blok& other);
 
     bool checkSeragam(int method, int range) const;
     bool divide(int method, int range, int minBlok);
