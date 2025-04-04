@@ -8,6 +8,7 @@
 #include "MAD.hpp"
 #include "Variance.hpp"
 #include "Entropy.hpp"
+#include "MPD.hpp"
 using namespace std;
 
 class Blok {

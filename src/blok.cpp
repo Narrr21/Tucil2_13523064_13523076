@@ -37,7 +37,11 @@ bool Blok::checkSeragam(int method, int range) const {
             return true;
         }
     } else if(method == 3) {
-        // Placeholder for method 3
+        MPD mpdCalc(image);
+        double mpd = mpdCalc.computeMPD();
+        if (mpd < range) {
+            return true;
+        }
     } else if(method == 4) {
         Entropy entropy(image);
         double ent = entropy.calculateEntropy(sizeX, sizeY);
