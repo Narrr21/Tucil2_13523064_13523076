@@ -23,7 +23,11 @@ Blok::~Blok() {
 
 bool Blok::checkSeragam(int method, int range) const {
     if(method == 1) {
-        // Placeholder for method 1
+        Variance varianceCalc({});
+        double var = varianceCalc.computeVariance();
+        if (var < range) {
+            return true;
+        }
     } else if(method == 2) {
         MAD madvalue({});
         vector<double> madval = madvalue.computeMADForMatrix(image);

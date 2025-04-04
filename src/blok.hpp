@@ -6,6 +6,7 @@
 #include <vector>
 #include "rgb.hpp"
 #include "MAD.hpp"
+#include "Variance.hpp"
 using namespace std;
 
 class Blok {
