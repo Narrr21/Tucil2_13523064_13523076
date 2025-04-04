@@ -7,6 +7,7 @@
 #include "rgb.hpp"
 #include "MAD.hpp"
 #include "Variance.hpp"
+#include "Entropy.hpp"
 using namespace std;
 
 class Blok {
