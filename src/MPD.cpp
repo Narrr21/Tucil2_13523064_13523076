@@ -15,8 +15,8 @@ double MPD::computeMPD() const {
             maxB = max(maxB, pixel.getBlue());
 
             minR = min(minR, pixel.getRed());
-            maxG = max(maxG, pixel.getGreen());
-            maxB = max(maxB, pixel.getBlue());
+            minG = min(minG, pixel.getGreen());
+            minB = min(minB, pixel.getBlue());
         }
     }
     double D_R = maxR - minR;
