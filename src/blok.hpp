@@ -9,6 +9,7 @@
 #include "Variance.hpp"
 #include "Entropy.hpp"
 #include "MPD.hpp"
+#include "SSIM.hpp"
 using namespace std;
 
 class Blok {

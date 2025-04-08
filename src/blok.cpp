@@ -48,6 +48,13 @@ bool Blok::checkSeragam(int method, int range) const {
         if (ent < range) {
             return true;
         }
+    } else if(method == 5) {
+        SSIM ssim(image);
+        double ssimVal = ssim.computeSSIM(rgb(0, 0, 0));
+        // ssim.debugPrint();
+        if (ssimVal > range) {
+            return true;
+        }
     } else {
         return false;
     }
