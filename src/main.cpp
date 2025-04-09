@@ -33,12 +33,35 @@ int main(int argc, char *argv[])
         // cout << "Block details:" << endl;
         // blok->printBlok(0);
         blok->normalizeRGB();
+        GifWriter gifWriter;
+        GifBegin(&gifWriter, handler->getGifPath().c_str(), image.getWidth(), image.getHeight(), 100); 
+
+        for (int level = 0; level <= Blok::getMaxDepth(); ++level) {
+            vector<vector<rgb>> frameMatrix(image.getHeight(), vector<rgb>(image.getWidth()));
+            blok->reconstructGif(frameMatrix, level);
+
+            uint8_t* buffer = new uint8_t[image.getWidth() * image.getHeight() * 4];
+            int idx = 0;
+            for (int y = 0; y < image.getHeight(); ++y) {
+                for (int x = 0; x < image.getWidth(); ++x) {
+                    buffer[idx++] = frameMatrix[y][x].getRed();
+                    buffer[idx++] = frameMatrix[y][x].getGreen();
+                    buffer[idx++] = frameMatrix[y][x].getBlue();
+                    buffer[idx++] = 255; 
+                }
+            }
+
+            GifWriteFrame(&gifWriter, buffer, image.getWidth(), image.getHeight(), 100);
+            delete[] buffer;
+        }
+        GifEnd(&gifWriter);
 
         vector<vector<rgb>> outputMatrix(image.getHeight(), vector<rgb>(image.getWidth()));
         blok->reconstructMatrix(outputMatrix);
 
         ImageProcess outputImage;
         outputImage.saveImage(handler->getOutputPath(), outputMatrix);
+        cout << "Gif saved successfully: " << handler->getGifPath() << endl;
 
         auto end = chrono::high_resolution_clock::now();
         auto duration = chrono::duration_cast<chrono::milliseconds>(end - start); 
