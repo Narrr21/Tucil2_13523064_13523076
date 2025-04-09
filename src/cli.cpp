@@ -7,6 +7,8 @@ cli::cli()
     cin >> imagePath;
     cout << "Please enter the output path: " << endl;
     cin >> outputPath;
+    cout << "Please enter the GIF output path: " << endl;
+    cin >> gifPath;
     cout << "Please enter the EMP: " << endl;
     cin >> method;
     cout << "Please enter the range: " << endl;
@@ -48,6 +50,10 @@ string cli::getImagePath()
 string cli::getOutputPath()
 {
     return outputPath;
+}
+string cli::getGifPath()
+{
+    return gifPath;
 }
 int cli::getmethod()
 {

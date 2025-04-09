@@ -3,11 +3,12 @@
 #include "MAD.hpp"
 #include "ImageProcess.hpp"
 #include <chrono>
+#include "gif.h"
 
 
 int main(int argc, char *argv[])
 {
-    
+
     cli* handler = new cli();
 
     auto start = chrono::high_resolution_clock::now();
@@ -18,6 +19,8 @@ int main(int argc, char *argv[])
 
     int originalSize = image.getWidth() * image.getHeight() * 3; 
     cout << "Original image size (before compression): " << originalSize << " bytes" << endl;
+
+
 
     Blok* blok = new Blok(0, 0, rgbMatrix, image.getWidth(), image.getHeight());
 
@@ -30,6 +33,7 @@ int main(int argc, char *argv[])
         // cout << "Block details:" << endl;
         // blok->printBlok(0);
         blok->normalizeRGB();
+
         vector<vector<rgb>> outputMatrix(image.getHeight(), vector<rgb>(image.getWidth()));
         blok->reconstructMatrix(outputMatrix);
 

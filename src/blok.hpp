@@ -35,6 +35,8 @@ public:
     void normalizeRGB();
     void reconstructMatrix(vector<vector<rgb>>& outputMatrix);
 
+
+
     void printBlok(int level) const;
     
     static int getCountBlok();
