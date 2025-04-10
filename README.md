@@ -59,10 +59,10 @@ make all
 ## 👥 Authors
 
 - **Samuel Gerrard Hamonangan Girsang**  
-  NIM: 13523064
-  Universitas: Institut Teknologi Bandung (ITB)
+  - NIM: 13523064
+  - Universitas: Institut Teknologi Bandung (ITB)
 
 - **Nadhif Al Rozin**  
-  NIM: 13523076  
-  Universitas: Institut Teknologi Bandung (ITB)
+  - NIM: 13523076  
+  - Universitas: Institut Teknologi Bandung (ITB)
 
