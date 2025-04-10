@@ -33,6 +33,7 @@ public:
     }
 
     double computeSSIMChannel(const vector<vector<unsigned char>>& ori, unsigned char compressedValue);
+    rgb computeMeanColor(const vector<vector<rgb>>& image);
     double computeSSIM(const rgb& compressedColor);
     void debugPrint();
 };

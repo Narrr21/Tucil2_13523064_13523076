@@ -50,7 +50,8 @@ bool Blok::checkSeragam(int method, int range) const {
         }
     } else if(method == 5) {
         SSIM ssim(image);
-        double ssimVal = ssim.computeSSIM(rgb(0, 0, 0));
+        rgb meanColor = ssim.computeMeanColor(image);
+        double ssimVal = ssim.computeSSIM(meanColor);
         // ssim.debugPrint();
         if (ssimVal > range) {
             return true;

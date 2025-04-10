@@ -32,6 +32,23 @@ double SSIM::computeSSIMChannel(const vector<vector<unsigned char>>& ori, unsign
     return ssim;
 }
 
+rgb SSIM::computeMeanColor(const vector<vector<rgb>>& image) {
+    long long sumR = 0, sumG = 0, sumB = 0;
+    int H = image.size();
+    int W = image[0].size();
+    int total = H * W;
+
+    for (const auto& row : image) {
+        for (const auto& pixel : row) {
+            sumR += pixel.getRed();
+            sumG += pixel.getGreen();
+            sumB += pixel.getBlue();
+        }
+    }
+
+    return rgb(sumR / total, sumG / total, sumB / total);
+}
+
 double SSIM::computeSSIM(const rgb& compressedColor) {
     double ssimR = computeSSIMChannel(R, compressedColor.getRed());
     double ssimG = computeSSIMChannel(G, compressedColor.getGreen());
