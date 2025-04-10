@@ -35,6 +35,9 @@ public:
     bool divide(int method, int range, int minBlok);
     void normalizeRGB();
     void reconstructMatrix(vector<vector<rgb>>& outputMatrix);
+    void reconstructGif(vector<vector<rgb>>& outputMatrix, int level);
+
+
 
     void printBlok(int level) const;
     

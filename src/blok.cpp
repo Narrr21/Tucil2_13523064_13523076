@@ -114,9 +114,26 @@ bool Blok::divide(int method, int range, int minBlok) {
     return true;
 }
 
+void Blok::reconstructGif(vector<vector<rgb>>& outputMatrix, int level) {
+    if (depth > level) return;
+
+    if (!isRoot || depth == level) {
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
+                outputMatrix[coordY + i][coordX + j] = image[i][j];
+            }
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (children[i] != nullptr) {
+            children[i]->reconstructGif(outputMatrix, level);
+        }
+    }
+}
+
 
 void Blok::normalizeRGB() {
-    if (!isRoot) {
         int totalRed = 0, totalGreen = 0, totalBlue = 0;
         int pixelCount = sizeX * sizeY;
 
@@ -140,7 +157,7 @@ void Blok::normalizeRGB() {
                 pixel.setBlue(avgBlue);
             }
         }
-    }
+    
 
     for (int i = 0; i < 4; i++) {
         if (children[i] != nullptr) {

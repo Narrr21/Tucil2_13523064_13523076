@@ -11,6 +11,7 @@ class cli
 private:
     string imagePath;
     string outputPath;
+    string gifPath;
     int method;
     int range;
     int minBlok;
@@ -23,6 +24,7 @@ public:
     void setRange(int range);
     void setMinBlok(int minBlok);
     string getImagePath();
+    string getGifPath();
     string getOutputPath();
     int getmethod();
     int getRange();
