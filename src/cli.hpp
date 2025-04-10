@@ -33,6 +33,7 @@ public:
     bool checkMethod();
     bool checkRange();
     bool checkMinBlok();
+    void displayASCII();
 };
 
 #endif
