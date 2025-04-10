@@ -4,11 +4,12 @@
 #include "ImageProcess.hpp"
 #include <chrono>
 #include "gif.h"
+#include <cstdlib>
 
 
 int main(int argc, char *argv[])
 {
-
+    system("clear");
     cli* handler = new cli();
 
     auto start = chrono::high_resolution_clock::now();
