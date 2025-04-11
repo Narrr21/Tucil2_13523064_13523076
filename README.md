@@ -56,6 +56,10 @@ make run
 ```bash
 make all
 ```
+## 🧾 References
+- Library stb_image:https://github.com/nothings/stb.git
+- Library gif:https://github.com/charlietangora/gif-h.git
+
 ## 👥 Authors
 
 - **Samuel Gerrard Hamonangan Girsang**  
